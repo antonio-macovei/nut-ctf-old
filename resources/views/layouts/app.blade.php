@@ -48,19 +48,5 @@
     <script src="/js/particles/particles.js"></script>
     <script src="/js/particles/app.js"></script>
 
-    <script type="text/javascript">
-
-    var app = new Vue({
-      el: '#app',
-      methods: {
-            changeTeamType(event) {
-                var optionText = event.target.value;
-                console.log(optionText);
-          }
-      }
-    });
-
-</script>
-
 </body>
 </html>

@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the team of the user.
+     */
+    public function team()
+    {
+        return $this->belongsTo('App\Team');
+    }
 }

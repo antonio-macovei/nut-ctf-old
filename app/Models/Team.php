@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    //
+    /**
+     * Get the users who are members of the team.
+     */
+    public function users()
+    {
+         return $this->hasMany('App\User');
+    }
 }
