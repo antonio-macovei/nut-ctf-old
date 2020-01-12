@@ -37392,6 +37392,7 @@ var render = function() {
                   attrs: {
                     type: "radio",
                     name: "team-switch",
+                    value: "0",
                     id: "team-switch-no",
                     autocomplete: "off",
                     checked: ""
@@ -37416,6 +37417,7 @@ var render = function() {
                   attrs: {
                     type: "radio",
                     name: "team-switch",
+                    value: "1",
                     id: "team-switch-yes",
                     autocomplete: "off"
                   }
@@ -37448,7 +37450,7 @@ var render = function() {
           class: { "is-invalid": _vm.error },
           attrs: {
             id: "team",
-            type: "team",
+            type: "text",
             name: "team",
             autocomplete: "team"
           }

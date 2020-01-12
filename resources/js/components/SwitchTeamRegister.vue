@@ -6,10 +6,10 @@
             <div class="col-md-6">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-outline-primary active" @click="useToken = false;">
-                        <input type="radio" name="team-switch" id="team-switch-no" autocomplete="off" checked=""> No
+                        <input type="radio" name="team-switch" value="0" id="team-switch-no" autocomplete="off" checked=""> No
                     </label>
                     <label class="btn btn-outline-primary" @click="useToken = true;">
-                        <input type="radio" name="team-switch" id="team-switch-yes"  autocomplete="off"> Yes
+                        <input type="radio" name="team-switch" value="1" id="team-switch-yes"  autocomplete="off"> Yes
                     </label>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             </label>
 
             <div class="col-md-6">
-                <input id="team" type="team" class="form-control" v-bind:class="{ 'is-invalid': error }" name="team" autocomplete="team">
+                <input id="team" type="text" class="form-control" v-bind:class="{ 'is-invalid': error }" name="team" autocomplete="team">
                 <span v-if="error" class="invalid-feedback" role="alert">
                     <strong>{{ errorMessage }}</strong>
                 </span>

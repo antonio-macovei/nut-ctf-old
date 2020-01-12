@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Models\Team;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,8 +53,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'team' => ['required', 'string', 'min:3']
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'team' => ['required', 'string', 'min:3', 'unique:teams,name'],
+            'team-switch' => ['boolean']
+        ],
+        [
+            'team.unique' => 'The team name has already been taken.',
         ]);
     }
 
@@ -65,10 +70,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $team = null;
+        if ($data['team-switch'] == 0) {
+            $token = md5('token' . time());
+            $team = Team::create([
+                'name' => $data['team'],
+                'token' => $token
+            ]);
+        } elseif ($data['team-switch'] == 1) {
+            Validator::make($data, [
+                'team' => 'exists:teams,token',
+            ],
+            [
+                'team.exists' => 'The provided token is not valid.',
+            ])->validate();
+            $team = Team::where('token', $data['team'])->first();
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'team_id' => $team->id
         ]);
     }
 }
