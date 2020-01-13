@@ -21,7 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedBigInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->string('country')->default('');
+            //$table->string('country')->default('');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->tinyInteger('banned')->default(0);
             $table->rememberToken();
             $table->timestamps();

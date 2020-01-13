@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Models\Team;
+use App\Models\Country;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,17 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $countries = Country::all();
+        return view('auth.register', compact('countries'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -55,7 +67,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
             'team' => ['required', 'string', 'min:3', 'unique:teams,name'],
-            'team-switch' => ['boolean']
+            'team-switch' => ['boolean'],
+            'country' => ['required', 'string', 'max:2', 'exists:countries,short_name']
         ],
         [
             'team.unique' => 'The team name has already been taken.',
@@ -86,12 +99,14 @@ class RegisterController extends Controller
             ])->validate();
             $team = Team::where('token', $data['team'])->first();
         }
+        $country = Country::where('short_name', $data['country'])->first();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'team_id' => $team->id
+            'team_id' => $team->id,
+            'country_id' => $country->id
         ]);
     }
 }

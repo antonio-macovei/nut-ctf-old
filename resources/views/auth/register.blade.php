@@ -62,6 +62,26 @@
                         </div>
 
                         <switch-team-register @error('team') :error="true" :error-message="{{ json_encode($message) }}" @enderror></switch-team-register>
+
+                        
+                        <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="country" name="country" class="custom-select form-control @error('email') is-invalid @enderror">
+                                    <option selected="" value="" disabled>Select a country</option>
+                                    @foreach ($countries as $country)
+                                         <option value="{{ $country->short_name }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
