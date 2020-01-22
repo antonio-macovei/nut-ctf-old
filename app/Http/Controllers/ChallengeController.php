@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Challenge;
+use App\Models\Category;
 
 class ChallengeController extends Controller
 {
@@ -13,6 +15,11 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $challenges[$category->id] = Challenge::where('category_id', $category->id)->get();
+            $counts[$category->id] = Challenge::where('category_id', $category->id)->count();
+        }
+        return view('user.challenges', ['categories' => $categories, 'challenges' => $challenges, 'counts' => $counts]);
     }
 }

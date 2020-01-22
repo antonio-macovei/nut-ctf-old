@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/challenges', 'ChallengeController@index')->name('user.challenges');
+Route::post('/submissions', 'SubmissionController@submitFlag');
 
 Route::prefix('admin')->group(function() {
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');

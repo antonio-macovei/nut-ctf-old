@@ -3,8 +3,34 @@ body {
 }
 
 #particles-js {
-	position:absolute;
-	width:100%;
+	position: fixed;
+	width: 100%;
 	height: 100%;
-	z-index:-1;
+	z-index: -1;
+}
+
+.category-icon {
+    height: 176px;
+}
+
+.form-flag {
+    width: 488px !important;
+    margin: 10px auto;
+}
+
+.submit-flag {
+    width: 80px !important;
+}
+
+.input-flag {
+    width: 400px !important;
+}
+
+.custom-error {
+    font-size: 80%;
+    color: #ff3c5c;
+}
+
+.positive-feedback {
+    color: #d4edda !important;
 }
