@@ -62,8 +62,6 @@
                                     <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0 input-flag">
                                         <input type="text" name="flag" class="form-control" id="form-label-{{ $challenge->id }}"  placeholder="NUT{...}" />
                                     </div>
-                                    <input type="hidden" class="flag-id" value="{{ $challenge->id }}" />
-                                    
                                     <button type="submit" class="btn btn-primary submit-flag" data-challenge-id="{{ $challenge->id }}">Check</button>
                                     <span class="invalid-feedback d-block"><strong id="error-{{ $challenge->id }}"></strong></span>
                                     <span class="invalid-feedback d-block text-success"><strong id="success-{{ $challenge->id }}"></strong></span>
@@ -81,7 +79,10 @@
     <script>
         $('.submit-flag').click(function(e) {
             e.preventDefault();
-            challenge_id = $(this).data("challenge-id");
+            submitObject = $(this);
+            errorBox = $(submitObject).next().children().first();
+            successBox = $(submitObject).next().next().children().first()
+            challenge_id = $(submitObject).data("challenge-id");
             flag = $("#form-label-" + challenge_id).val();
             axios.post('/submissions', {
                 flag: flag,
@@ -89,23 +90,32 @@
             })
             .then(function (response) {
                 if (response.data.status == "success") {
-                    $("#error-" + challenge_id).html("");
-                    $("#success-" + challenge_id).html(response.data.message);
+                    $(errorBox).html("");
+                    $(successBox).html(response.data.message);
                     setTimeout(() => {
-                        $("#success-" + challenge_id).html("&nbsp;");
-                    }, 30000);
+                        $(successBox).html("");
+                    }, 15000);
                 }
             })
             .catch(function (error) {
-                console.log(error.response.data.errors.flag);
-                 $("#success-" + challenge_id).html("");
-                $("#error-" + challenge_id).html("&nbsp;");
+                $(successBox).html("");
+                $(errorBox).html("&nbsp;");
+                if (typeof error.response.data.errors.flag !== 'undefined') {
+                    setTimeout(() => {
+                         $(errorBox).html(error.response.data.errors.flag);
+                    }, 15);
+                } else if (typeof error.response.data.errors.challenge_id !== 'undefined') {
+                    setTimeout(() => {
+                         $(errorBox).html(error.response.data.errors.challenge_id);
+                    }, 15);
+                } else {
+                     setTimeout(() => {
+                         $(errorBox).html("There has been an unexpected error. Try refreshing the page!");
+                    }, 15);
+                }
                 setTimeout(() => {
-                    $("#error-" + challenge_id).html(error.response.data.errors.flag);
-                 }, 15);
-                setTimeout(() => {
-                    $("#error-" + challenge_id).html("&nbsp;");
-                }, 30000);
+                     $(errorBox).html("");
+                }, 15000);
             });
         });
     </script>

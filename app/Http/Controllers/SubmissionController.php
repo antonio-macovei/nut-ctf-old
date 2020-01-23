@@ -27,6 +27,10 @@ class SubmissionController extends Controller
         $validatedData = $request->validate([
             'challenge_id' => ['required', 'numeric', 'exists:challenges,id'],
             'flag' => ['required', 'min:3', 'max:37']
+        ], [
+            'challenge_id.required' => 'There was an error submitting your flag.',
+            'challenge_id.numeric' => 'There was an error submitting your flag.',
+            'challenge_id.exists' => 'There was an error submitting your flag.'
         ]);
         $user = Auth::user();
         $challenge_id = $request->input('challenge_id');
