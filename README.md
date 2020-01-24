@@ -1,6 +1,6 @@
 # NUT CTF Platform
 
-![CTF Challenges Dashboard](https://imgur.com/a/6g0AlEH)
+![CTF-Challenges-Dashboard](docs/screenshots/nut-challenges.png)
 
 ### Features implemented
 
