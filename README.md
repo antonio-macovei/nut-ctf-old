@@ -15,6 +15,7 @@
 
 - [ ] Leaderboard
 - [ ] Timer
+- [ ] Hints
 - [ ] Detailed statistics about ongoing competitions, teams and users
 - [ ] Admin Panel with complete control over challenges & categories
 - [ ] Submissions overview and history
