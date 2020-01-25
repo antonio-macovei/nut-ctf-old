@@ -2,7 +2,7 @@
 
 ![CTF-Challenges-Dashboard](docs/screenshots/nut-challenges.png)
 
-### Features implemented
+### Implemented features
 
 - [x] Multiple categories
 - [x] Challenges grouped by category
@@ -11,7 +11,7 @@
 - [x] Account register
 - [x] New team register or join existing team using a code
 
-### Features to be added
+### Upcoming features
 
 - [ ] Leaderboard
 - [ ] Timer
