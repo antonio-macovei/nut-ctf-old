@@ -12,4 +12,12 @@ class Category extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Get the challenges for the category.
+     */
+    public function challenges()
+    {
+        return $this->hasMany('App\Models\Challenge');
+    }
 }

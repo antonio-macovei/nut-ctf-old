@@ -42,6 +42,22 @@ class User extends Authenticatable
      */
     public function team()
     {
-        return $this->belongsTo('App\Models\Team');
+        return $this->belongsTo('App\Models\Team', 'team_id');
+    }
+
+    /**
+     * Get the country of the user.
+     */
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country', 'country_id');
+    }
+
+    /**
+     * Get the submissions of the user.
+     */
+    public function submissions()
+    {
+        return $this->hasMany('App\Models\Submission');
     }
 }

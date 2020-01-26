@@ -9,7 +9,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     @if(request()->is('admin*'))
-                        <a href="{{ route('admin.dashboard') }}" class="pl-md-0 p-3 text-light">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="pl-md-0 p-3 text-decoration-none text-light">Dashboard</a>
+                        <a href="{{ route('admin.challenges') }}" class="pl-md-0 p-3 text-decoration-none text-light">Challenges</a>
                         @guest
                             <a href="{{ route('admin.login') }}" class="p-3 text-decoration-none text-light">{{ __('Login') }}</a>
                         @else

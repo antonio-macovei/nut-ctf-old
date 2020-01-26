@@ -9,7 +9,7 @@ use App\Models\Category;
 class ChallengeController extends Controller
 {
      /**
-     * Display the challenges
+     * Display the challenges.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -21,5 +21,16 @@ class ChallengeController extends Controller
             $counts[$category->id] = Challenge::where('category_id', $category->id)->count();
         }
         return view('user.challenges', ['categories' => $categories, 'challenges' => $challenges, 'counts' => $counts]);
+    }
+
+    /**
+     * Manage challenges.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function manage()
+    {
+        $challenges = Challenge::all();
+        return view('admin.challenges', ['challenges' => $challenges]);
     }
 }

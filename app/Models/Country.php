@@ -12,5 +12,12 @@ class Country extends Model
      * @var bool
      */
     public $timestamps = false;
-    
+
+    /**
+     * Get the users of the country.
+     */
+    public function users()
+    {
+         return $this->hasMany('App\User');
+    }
 }

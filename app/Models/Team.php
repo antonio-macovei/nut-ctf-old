@@ -22,4 +22,12 @@ class Team extends Model
     {
          return $this->hasMany('App\User');
     }
+
+    /**
+     * Get the submissions of the team.
+     */
+    public function submissions()
+    {
+         return $this->hasMany('App\Models\Submission');
+    }
 }
