@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <a data-toggle="collapse" href="#{{ $category->short_name }}-challenges" role="button" aria-expanded="false" aria-controls="{{ $category->short_name }}-challenges">
-                                <img src="images/icons/{{ $category->short_name }}.png" class="category-icon" />
+                                <img src="images/icons/{{ $category->short_name }}.svg" class="category-icon" />
                             </a>
                         </div>
                         <div class="collapse" id="{{ $category->short_name }}-challenges">
