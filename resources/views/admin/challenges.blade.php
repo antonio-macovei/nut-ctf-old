@@ -9,7 +9,7 @@
                 <div class="col-4">
                     <div class="list-group" id="list-tab" role="tablist">
                         @foreach ($challenges as $challenge)
-                            <a class="list-group-item list-group-item-action list-group-item-warning with-icon {{ $loop->first ? "active" : "" }}" id="ch-{{ $challenge->id }}-list" data-toggle="list" href="#ch-{{ $challenge->id }}" role="tab" aria-controls="{{ $challenge->id }}"><img src="/images/icons/{{ $challenge->category->short_name }}.png" class="d-inline" style="height:30px;" /> {{ $challenge->name }}</a>
+                            <a class="list-group-item list-group-item-action list-group-item-warning with-icon {{ $loop->first ? "active" : "" }}" id="ch-{{ $challenge->id }}-list" data-toggle="list" href="#ch-{{ $challenge->id }}" role="tab" aria-controls="{{ $challenge->id }}"><img src="/images/icons/{{ $challenge->category->short_name }}.svg" class="d-inline" style="height:30px;" /> {{ $challenge->name }}</a>
                         @endforeach
                     </div>
                 </div>
