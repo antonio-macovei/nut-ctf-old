@@ -37,8 +37,25 @@ body {
 
 .list-group-item {
    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+   display: flex;
+   line-height: 35px;
 }
 
 .with-icon {
     padding-left: 12px !important;
+}
+
+.list-item-icon {
+    width: 29px;
+    line-height: 35px;
+}
+
+.list-item-icon-container {
+    height: 35px;
+    width: 35px;
+    display: inline-flex;
+    justify-content: center;
+    background-color: #1e2037;
+    border-radius: 3px;
+    margin-right: 8px;
 }
