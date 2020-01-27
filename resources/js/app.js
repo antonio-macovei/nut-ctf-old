@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('switch-team-register', require('./components/SwitchTeamRegister.vue').default);
+Vue.component('challenge-management', require('./components/ChallengeManagement.vue').default);
+Vue.component('edit-challenge', require('./components/EditChallenge.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1829,6 +1829,225 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    challenges: {
+      type: Array,
+      required: true
+    },
+    categories: {
+      type: Array,
+      required: true
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    refresh: function refresh() {
+      this.$forceUpdate();
+    },
+    getChallengeIndex: function getChallengeIndex(challenge_id) {
+      var index = -1;
+      $.each(this.challenges, function (i, challenge) {
+        if (challenge.id === challenge_id) {
+          index = i;
+        }
+      });
+      return index;
+    },
+    getCategoryIndex: function getCategoryIndex(category_id) {
+      var index = -1;
+      $.each(this.categories, function (i, category) {
+        if (category.id === category_id) {
+          index = i;
+        }
+      });
+      return index;
+    },
+    getIcon: function getIcon(challenge_id) {
+      var challenge_index = this.getChallengeIndex(challenge_id);
+      var category_index = this.getCategoryIndex(this.challenges[challenge_index].category_id);
+      return '/images/icons/' + this.categories[category_index].short_name + '.svg';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditChallenge.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditChallenge.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    challenge: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      errors: {},
+      success: false
+    };
+  },
+  methods: {
+    submitChallenge: function submitChallenge() {
+      var _this = this;
+
+      this.errors = {};
+      axios.post('/admin/challenges/update', {
+        id: this.challenge.id,
+        name: this.challenge.name,
+        description: this.challenge.description,
+        points: this.challenge.points,
+        category: this.challenge.category,
+        availability: this.challenge.availability
+      }).then(function (response) {
+        _this.success = true;
+
+        _this.$emit('updatedChallenge');
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -37301,6 +37520,559 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-4" }, [
+      _c(
+        "div",
+        {
+          staticClass: "list-group",
+          attrs: { id: "list-tab", role: "tablist" }
+        },
+        _vm._l(_vm.challenges, function(challenge, index) {
+          return _c(
+            "a",
+            {
+              key: challenge.id,
+              staticClass:
+                "list-group-item list-group-item-action list-group-item-warning with-icon",
+              class: { active: index === 0 },
+              attrs: {
+                id: "ch-" + challenge.id + "-list",
+                "data-toggle": "list",
+                href: "#ch-" + challenge.id,
+                role: "tab",
+                "aria-controls": challenge.id
+              }
+            },
+            [
+              _c("div", { staticClass: "list-item-icon-container" }, [
+                _c("img", {
+                  staticClass: "list-item-icon",
+                  attrs: { src: _vm.getIcon(challenge.id) }
+                })
+              ]),
+              _vm._v(" " + _vm._s(challenge.name) + "\r\n            ")
+            ]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-8" }, [
+      _c(
+        "div",
+        { staticClass: "tab-content", attrs: { id: "nav-tabContent" } },
+        _vm._l(_vm.challenges, function(challenge, index) {
+          return _c(
+            "div",
+            {
+              key: challenge.id,
+              staticClass: "tab-pane fade",
+              class: { "show active": index === 0 },
+              attrs: {
+                id: "ch-" + challenge.id,
+                role: "tabpanel",
+                "aria-labelledby": "ch-" + challenge.id + "-list"
+              }
+            },
+            [
+              _c(
+                "ul",
+                { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+                [
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link active",
+                        attrs: {
+                          id: "overview-tab-ch-" + challenge.id,
+                          "data-toggle": "tab",
+                          href: "#overview-ch-" + challenge.id,
+                          role: "tab",
+                          "aria-controls": "home",
+                          "aria-selected": "true"
+                        }
+                      },
+                      [_vm._v("Overview")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          id: "edit-tab-ch-" + challenge.id,
+                          "data-toggle": "tab",
+                          href: "#edit-ch-" + challenge.id,
+                          role: "tab",
+                          "aria-controls": "contact",
+                          "aria-selected": "false"
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          id: "submissions-tab-ch-" + challenge.id,
+                          "data-toggle": "tab",
+                          href: "#submissions-ch-" + challenge.id,
+                          role: "tab",
+                          "aria-controls": "profile",
+                          "aria-selected": "false"
+                        }
+                      },
+                      [_vm._v("Submissions")]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "tab-content" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane fade show active",
+                    attrs: {
+                      id: "overview-ch-" + challenge.id,
+                      role: "tabpanel",
+                      "aria-labelledby": "overview-tab-ch-" + challenge.id
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "tab-content-box" }, [
+                      _c("h3", [
+                        _vm._v(
+                          _vm._s(challenge.name) +
+                            " (" +
+                            _vm._s(challenge.points) +
+                            " points)"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(challenge.description))])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane fade",
+                    attrs: {
+                      id: "edit-ch-" + challenge.id,
+                      role: "tabpanel",
+                      "aria-labelledby": "edit-tab-ch-" + challenge.id
+                    }
+                  },
+                  [
+                    _c("edit-challenge", {
+                      attrs: { challenge: challenge },
+                      on: { updatedChallenge: _vm.refresh }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "tab-pane fade",
+                  attrs: {
+                    id: "submissions-ch-" + challenge.id,
+                    role: "tabpanel",
+                    "aria-labelledby": "submissions-tab-ch-" + challenge.id
+                  }
+                })
+              ])
+            ]
+          )
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "tab-content-box" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submitChallenge()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "name-" + _vm.challenge.id } }, [
+            _vm._v("Name")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.challenge.name,
+                expression: "challenge.name"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors.name },
+            attrs: {
+              id: "name-" + _vm.challenge.id,
+              type: "text",
+              name: "name"
+            },
+            domProps: { value: _vm.challenge.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.challenge, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.errors.name
+            ? _c(
+                "span",
+                { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                _vm._l(_vm.errors.name, function(error) {
+                  return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                }),
+                0
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "desc-" + _vm.challenge.id } }, [
+            _vm._v("Description")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.challenge.description,
+                expression: "challenge.description"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors.description },
+            attrs: { name: "description", id: "desc-" + _vm.challenge.id },
+            domProps: { value: _vm.challenge.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.challenge, "description", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.errors.description
+            ? _c(
+                "span",
+                { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                _vm._l(_vm.errors.description, function(error) {
+                  return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                }),
+                0
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "flag-" + _vm.challenge.id } }, [
+            _vm._v("Flag")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.challenge.flag,
+                expression: "challenge.flag"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors.flag },
+            attrs: {
+              id: "flag-" + _vm.challenge.id,
+              type: "text",
+              name: "flag"
+            },
+            domProps: { value: _vm.challenge.flag },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.challenge, "flag", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.errors.flag
+            ? _c(
+                "span",
+                { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                _vm._l(_vm.errors.flag, function(error) {
+                  return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                }),
+                0
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("label", { attrs: { for: "points-" + _vm.challenge.id } }, [
+              _vm._v("Points")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.challenge.points,
+                  expression: "challenge.points"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.points },
+              attrs: {
+                id: "points-" + _vm.challenge.id,
+                type: "text",
+                name: "points"
+              },
+              domProps: { value: _vm.challenge.points },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.challenge, "points", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.points
+              ? _c(
+                  "span",
+                  { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                  _vm._l(_vm.errors.points, function(error) {
+                    return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c("label", { attrs: { for: "category-" + _vm.challenge.id } }, [
+              _vm._v("Category")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.challenge.category,
+                    expression: "challenge.category"
+                  }
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.category },
+                attrs: { id: "category-" + _vm.challenge.id, name: "category" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.challenge,
+                      "category",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "1" } }, [_vm._v("Web")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "5" } }, [_vm._v("OSINT")])
+              ]
+            ),
+            _vm._v(" "),
+            _vm.errors.category
+              ? _c(
+                  "span",
+                  { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                  _vm._l(_vm.errors.category, function(error) {
+                    return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "form-group col-md-6" }, [
+            _c(
+              "label",
+              { attrs: { for: "availability-" + _vm.challenge.id } },
+              [_vm._v("Availability")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.challenge.availability,
+                  expression: "challenge.availability"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.availability },
+              attrs: {
+                id: "availability-" + _vm.challenge.id,
+                type: "text",
+                name: "availability"
+              },
+              domProps: { value: _vm.challenge.availability },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.challenge, "availability", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.availability
+              ? _c(
+                  "span",
+                  { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                  _vm._l(_vm.errors.availability, function(error) {
+                    return _c("strong", { key: error }, [_vm._v(_vm._s(error))])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.success
+          ? _c("div", { staticClass: "form-group" }, [
+              _c("span", { staticClass: "text-success" }, [
+                _vm._v("Data has been saved successfully!")
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "valid-feedback", attrs: { role: "alert" } },
+      [_c("strong", [_vm._v("Data has been saved successfully!")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-warning float-right",
+        attrs: { type: "submit" }
+      },
+      [_c("span", { staticClass: "fas fa-download mr-2" }), _vm._v("Save")]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -49658,6 +50430,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('switch-team-register', __webpack_require__(/*! ./components/SwitchTeamRegister.vue */ "./resources/js/components/SwitchTeamRegister.vue")["default"]);
+Vue.component('challenge-management', __webpack_require__(/*! ./components/ChallengeManagement.vue */ "./resources/js/components/ChallengeManagement.vue")["default"]);
+Vue.component('edit-challenge', __webpack_require__(/*! ./components/EditChallenge.vue */ "./resources/js/components/EditChallenge.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49712,6 +50486,144 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ChallengeManagement.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/ChallengeManagement.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChallengeManagement.vue?vue&type=template&id=08ad5beb& */ "./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb&");
+/* harmony import */ var _ChallengeManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChallengeManagement.vue?vue&type=script&lang=js& */ "./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ChallengeManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ChallengeManagement.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChallengeManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ChallengeManagement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChallengeManagement.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChallengeManagement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ChallengeManagement.vue?vue&type=template&id=08ad5beb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChallengeManagement.vue?vue&type=template&id=08ad5beb&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChallengeManagement_vue_vue_type_template_id_08ad5beb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EditChallenge.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/EditChallenge.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditChallenge.vue?vue&type=template&id=135e109e& */ "./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e&");
+/* harmony import */ var _EditChallenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditChallenge.vue?vue&type=script&lang=js& */ "./resources/js/components/EditChallenge.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditChallenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EditChallenge.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EditChallenge.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/EditChallenge.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditChallenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditChallenge.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditChallenge.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditChallenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditChallenge.vue?vue&type=template&id=135e109e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditChallenge.vue?vue&type=template&id=135e109e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditChallenge_vue_vue_type_template_id_135e109e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

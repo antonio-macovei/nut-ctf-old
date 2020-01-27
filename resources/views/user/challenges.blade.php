@@ -57,15 +57,15 @@
                             
                         </div>
                         <div class="modal-footer">
-                                <form class="form-inline form-flag">
-                                    <label class="sr-only" for="form-label-{{ $challenge->id }}">Flag</label>
-                                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0 input-flag">
-                                        <input type="text" name="flag" class="form-control" id="form-label-{{ $challenge->id }}"  placeholder="NUT{...}" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary submit-flag" data-challenge-id="{{ $challenge->id }}">Check</button>
-                                    <span class="invalid-feedback d-block"><strong id="error-{{ $challenge->id }}"></strong></span>
-                                    <span class="invalid-feedback d-block text-success"><strong id="success-{{ $challenge->id }}"></strong></span>
-                                </form>
+                            <form class="form-inline form-flag">
+                                <label class="sr-only" for="form-label-{{ $challenge->id }}">Flag</label>
+                                <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0 input-flag">
+                                    <input type="text" name="flag" class="form-control" id="form-label-{{ $challenge->id }}"  placeholder="NUT{...}" />
+                                </div>
+                                <button type="submit" class="btn btn-primary submit-flag" data-challenge-id="{{ $challenge->id }}">Check</button>
+                                <span class="invalid-feedback d-block"><strong id="error-{{ $challenge->id }}"></strong></span>
+                                <span class="invalid-feedback d-block text-success"><strong id="success-{{ $challenge->id }}"></strong></span>
+                            </form>
                         </div>
                         
                     </div>

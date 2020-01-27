@@ -59,3 +59,15 @@ body {
     border-radius: 3px;
     margin-right: 8px;
 }
+
+.tab-content-box {
+    padding: 20px 15px;
+}
+
+.nav-link, .nav-link:hover, .nav-link:active {
+    color: #f97515;
+}
+
+.short-input {
+    max-width: 250px;
+}

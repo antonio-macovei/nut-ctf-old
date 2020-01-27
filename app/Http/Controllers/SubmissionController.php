@@ -13,7 +13,7 @@ class SubmissionController extends Controller
 {
 
     /**
-     * Check flag submission
+     * Check flag submission.
      *
      * @param  Request  $request
      * @return Response
