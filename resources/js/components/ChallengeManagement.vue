@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" :id="'edit-ch-' + challenge.id" role="tabpanel" :aria-labelledby="'edit-tab-ch-' + challenge.id">
-                        <edit-challenge @updatedChallenge="refresh" :challenge="challenge"></edit-challenge>
+                        <edit-challenge @updatedChallenge="refresh" :challenge="challenge" :categories="categories"></edit-challenge>
                     </div>
                     <div class="tab-pane fade" :id="'submissions-ch-' + challenge.id" role="tabpanel" :aria-labelledby="'submissions-tab-ch-' + challenge.id">
                         

@@ -2007,11 +2007,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     challenge: {
       type: Object,
+      required: true
+    },
+    categories: {
+      type: Array,
       required: true
     }
   },
@@ -2031,10 +2034,13 @@ __webpack_require__.r(__webpack_exports__);
         name: this.challenge.name,
         description: this.challenge.description,
         points: this.challenge.points,
-        category: this.challenge.category,
+        category: this.challenge.category_id,
         availability: this.challenge.availability
       }).then(function (response) {
-        _this.success = true;
+        _this.success = false;
+        setTimeout(function () {
+          _this.success = true;
+        }, 15);
 
         _this.$emit('updatedChallenge');
       })["catch"](function (error) {
@@ -37691,7 +37697,10 @@ var render = function() {
                   },
                   [
                     _c("edit-challenge", {
-                      attrs: { challenge: challenge },
+                      attrs: {
+                        challenge: challenge,
+                        categories: _vm.categories
+                      },
                       on: { updatedChallenge: _vm.refresh }
                     })
                   ],
@@ -37936,8 +37945,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.challenge.category,
-                    expression: "challenge.category"
+                    value: _vm.challenge.category_id,
+                    expression: "challenge.category_id"
                   }
                 ],
                 staticClass: "form-control",
@@ -37955,17 +37964,20 @@ var render = function() {
                       })
                     _vm.$set(
                       _vm.challenge,
-                      "category",
+                      "category_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   }
                 }
               },
-              [
-                _c("option", { attrs: { value: "1" } }, [_vm._v("Web")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "5" } }, [_vm._v("OSINT")])
-              ]
+              _vm._l(_vm.categories, function(category) {
+                return _c(
+                  "option",
+                  { key: category.id, domProps: { value: category.id } },
+                  [_vm._v(_vm._s(category.name))]
+                )
+              }),
+              0
             ),
             _vm._v(" "),
             _vm.errors.category

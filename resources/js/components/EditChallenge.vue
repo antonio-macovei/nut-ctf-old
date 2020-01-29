@@ -41,9 +41,8 @@
 
                 <div class="form-group col-md-6">
                     <label v-bind:for="'category-' + challenge.id">Category</label>
-                    <select v-bind:id="'category-' + challenge.id" v-bind:class="{ 'is-invalid': errors.category }" class="form-control" name="category" v-model="challenge.category">
-                        <option value="1">Web</option>
-                        <option value="5">OSINT</option>
+                    <select v-bind:id="'category-' + challenge.id" v-bind:class="{ 'is-invalid': errors.category }" class="form-control" name="category" v-model="challenge.category_id">
+                        <option v-for="category in categories" v-bind:key="category.id" :value="category.id">{{ category.name }}</option>
                     </select>
                     <span v-if="errors.category" class="invalid-feedback" role="alert">
                         <strong v-for="error in errors.category" v-bind:key="error">{{ error }}</strong>
@@ -75,6 +74,10 @@
             challenge: {
                 type: Object,
                 required: true
+            },
+            categories: {
+                type: Array,
+                required: true
             }
         },
         data() {
@@ -91,11 +94,14 @@
                     name: this.challenge.name,
                     description: this.challenge.description,
                     points: this.challenge.points,
-                    category: this.challenge.category,
+                    category: this.challenge.category_id,
                     availability: this.challenge.availability,
                 })
                 .then(response => {
-                    this.success = true;
+                    this.success = false;
+                    setTimeout(() => {
+                        this.success = true;
+                    }, 15);
                     this.$emit('updatedChallenge');
                 })
                 .catch(error => {
