@@ -30,4 +30,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/challenges', 'ChallengeController@manage')->name('admin.challenges')->middleware('auth:admin');
     Route::post('/challenges/update', 'ChallengeController@update')->name('admin.challenges.update')->middleware('auth:admin');
     Route::post('/challenges/delete', 'ChallengeController@delete')->name('admin.challenges.delete')->middleware('auth:admin');
+    Route::get('/submissions/get/{id}', 'SubmissionController@getSubmissions')->where('id', '[0-9]+')
+                ->name('admin.submissions.get')->middleware('auth:admin');
 });

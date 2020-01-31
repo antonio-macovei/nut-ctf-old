@@ -52,6 +52,7 @@ class SubmissionController extends Controller
         $submission->challenge_id = $challenge->id;
         $submission->submitted_at = now();
         $submission->status = $status;
+        $submission->flag = $flag;
         $submission->save();
 
         if (!$status) {
@@ -60,6 +61,23 @@ class SubmissionController extends Controller
         }
         $response['status'] = "success";
         $response['message'] = "You found the correct flag! Congratulations!";
+        return response()->json($response);
+    }
+
+    /**
+     * Return submissions for the given challenge.
+     *
+     * @param  int  $id
+     * @return JSON
+     */
+    function getSubmissions($id) {
+        $challenge = Challenge::find($id);
+        if ($challenge == null) {
+            $error['message'] = 'Challenge not found';
+            return response()->json($error);
+        }
+        $submissions = Submission::where('challenge_id', $challenge->id)->orderBy('submitted_at', 'desc')->get();
+        $response = $submissions;
         return response()->json($response);
     }
 }

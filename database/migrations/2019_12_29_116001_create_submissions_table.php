@@ -21,8 +21,9 @@ class CreateSubmissionsTable extends Migration
             $table->foreign('team_id')->references('id')->on('teams');
             $table->unsignedBigInteger('challenge_id');
             $table->foreign('challenge_id')->references('id')->on('challenges');
-            $table->timestamp('submitted_at')->useCurrent();
+            $table->string('flag');
             $table->tinyInteger('status');
+            $table->timestamp('submitted_at')->useCurrent();
         });
     }
 

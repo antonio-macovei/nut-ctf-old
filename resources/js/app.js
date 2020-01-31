@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('switch-team-register', require('./components/SwitchTeamRegister.vue').default);
 Vue.component('challenge-management', require('./components/ChallengeManagement.vue').default);
 Vue.component('edit-challenge', require('./components/EditChallenge.vue').default);
+Vue.component('view-challenge-submissions', require('./components/ViewChallengeSubmissions.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

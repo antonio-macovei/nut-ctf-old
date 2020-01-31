@@ -10,7 +10,6 @@
     <div class="col-8">
         <div class="tab-content" id="nav-tabContent">
             <div v-for="(challenge, index) in challenges" v-bind:key="challenge.id" :class="{ 'show active': index === 0 }" class="tab-pane fade" :id="'ch-' + challenge.id" role="tabpanel" :aria-labelledby="'ch-' + challenge.id + '-list'">
-
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" :id="'overview-tab-ch-' + challenge.id" data-toggle="tab" :href="'#overview-ch-' + challenge.id" role="tab" aria-controls="home" aria-selected="true">Overview</a>
@@ -33,7 +32,7 @@
                         <edit-challenge @updatedChallenge="refresh" :challenge="challenge" :categories="categories"></edit-challenge>
                     </div>
                     <div class="tab-pane fade" :id="'submissions-ch-' + challenge.id" role="tabpanel" :aria-labelledby="'submissions-tab-ch-' + challenge.id">
-                        
+                        <view-challenge-submissions :challenge="challenge"></view-challenge-submissions>
                     </div>
                 </div>
             </div>
