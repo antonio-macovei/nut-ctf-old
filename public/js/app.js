@@ -2163,6 +2163,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     challenge: {
@@ -2171,7 +2193,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      submissions: null
+    };
   },
   methods: {
     getSubmissions: function getSubmissions(id) {
@@ -2181,6 +2205,16 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/admin/submissions/get/' + this.challenge.id).then(function (response) {
+      console.log(response);
+      _this.submissions = response.data;
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -38320,21 +38354,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "tab-content-box" }, [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-warning",
-        on: {
-          click: function($event) {
-            return _vm.getSubmissions(_vm.challenge.id)
-          }
-        }
-      },
-      [_vm._v("Get submissions")]
-    )
+    _c("table", { staticClass: "table table-hover table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.submissions, function(submission, index) {
+          return _c("tr", { key: submission.id }, [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(submission.team.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(submission.user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(submission.flag))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(submission.status))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(submission.submitted_at))])
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Team")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("User")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Flag")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Time")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

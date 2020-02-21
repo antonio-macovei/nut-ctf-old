@@ -64,7 +64,13 @@ class ChallengeController extends Controller
      */
     public function delete(Request $request)
     {
-        $challenges = Challenge::find(1);
+        $challenge = Challenge::find($response->input('id'));
+        if ($challenge == null) {
+            $error['message'] = "Challenge not found";
+            return response()->json($error);
+        }
+        $challenge->delete();
+        $response['message'] = "success";
         return response()->json($response);
     }
 }

@@ -76,7 +76,7 @@ class SubmissionController extends Controller
             $error['message'] = 'Challenge not found';
             return response()->json($error);
         }
-        $submissions = Submission::where('challenge_id', $challenge->id)->orderBy('submitted_at', 'desc')->get();
+        $submissions = Submission::with(['team', 'user'])->where('challenge_id', $challenge->id)->orderBy('submitted_at', 'desc')->get();
         $response = $submissions;
         return response()->json($response);
     }
