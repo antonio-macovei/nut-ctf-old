@@ -71,3 +71,8 @@ body {
 .short-input {
     max-width: 250px;
 }
+
+.status-icon {
+    width:22px;
+    height:22px;
+}

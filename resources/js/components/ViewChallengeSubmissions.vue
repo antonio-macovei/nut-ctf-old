@@ -17,8 +17,11 @@
                     <td>{{ submission.team.name }}</td>
                     <td>{{ submission.user.name }}</td>
                     <td>{{ submission.flag }}</td>
-                    <td>{{ submission.status }}</td>
-                    <td>{{ submission.submitted_at }}</td>
+                    <td style="text-align:center;">
+                        <img v-if="submission.status" src="/images/icons/correct.svg" class="status-icon" />
+                        <img v-else src="/images/icons/incorrect.svg" class="status-icon" />
+                    </td>
+                    <td>{{ submission.submitted_at | formatDate }}</td>
                 </tr>
             </tbody>
         </table>
@@ -39,25 +42,13 @@
                 submissions: null
             };
         },
-        methods: {
-            getSubmissions(id) {
-                axios.get('/admin/submissions/get/' + id)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-            }
-        },
         mounted () {
             axios.get('/admin/submissions/get/' + this.challenge.id)
             .then(response => {
-                console.log(response);
                 this.submissions = response.data;
             })
             .catch(error => {
-                console.log(error);
+
             });
         }
     };
